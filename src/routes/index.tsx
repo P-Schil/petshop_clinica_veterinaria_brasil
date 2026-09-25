@@ -1,24 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { ArrowRight, Award, CalendarCheck, ChevronLeft, ChevronRight, Clock3, HeartPulse, MapPin, MessageCircle, PawPrint, ShieldCheck, ShoppingBag, Sparkles, Stethoscope, Truck, Users } from "lucide-react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ component: Index });
+const wa = "https://wa.me/551136867893?text=" + encodeURIComponent("Olá! Gostaria de falar com um especialista da Veterinária e Pet Shop Brasil.");
+const services = [
+  [Sparkles, "Banho e Tosa", "Higiene e estética com atenção, conforto e foco no bem-estar do seu pet."],
+  [Stethoscope, "Consulta e Procedimentos Veterinários", "Atendimento veterinário com avaliação individualizada e orientação responsável."],
+  [ShoppingBag, "Rações e Acessórios", "Produtos selecionados para diferentes necessidades, rotinas e fases da vida."],
+  [Truck, "Sistema Leva e Traz", "Mais praticidade para sua rotina, facilitando o acesso aos cuidados."]
+] as const;
+const differentials = [
+  [HeartPulse, "Atendimento personalizado", "Atenção individual, orientação clara e foco no cuidado responsável."],
+  [ShieldCheck, "Qualidade técnica e ética", "Qualidade e ética profissional preservadas em todas as decisões."],
+  [Users, "Relacionamento duradouro", "Confiança construída com acompanhamento próximo e comunicação transparente."],
+  [CalendarCheck, "Praticidade para o tutor", "Serviços integrados e contato direto para simplificar a rotina."],
+  [Award, "Estrutura completa", "Pet shop e atendimento veterinário reunidos em um só lugar."],
+  [Clock3, "Informação clara", "Orientação objetiva para decisões mais seguras sobre o cuidado animal."]
+] as const;
+const proof = [
+  ["Confiança construída no atendimento", "Nosso compromisso é oferecer uma experiência segura, próxima e transparente para os tutores."],
+  ["Cuidado completo em um só lugar", "Banho e tosa, atendimento veterinário, produtos e leva e traz formam uma experiência integrada."],
+  ["Qualidade antes de qualquer decisão comercial", "A qualidade técnica e a ética profissional são compromissos permanentes da marca."]
+];
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const [slide, setSlide] = useState(0);
+  return <main className="min-h-screen bg-white text-slate-900">
+    <a href="#conteudo" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-[#e0fb13] focus:px-4 focus:py-3 focus:font-bold">Pular para o conteúdo</a>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/95 text-white backdrop-blur"><div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#inicio" className="flex items-center gap-2" aria-label="Veterinária e Pet Shop Brasil"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#e0fb13] text-slate-950"><PawPrint /></span><b>Veterinária e Pet Shop Brasil</b></a>
+      <nav className="hidden gap-7 text-sm font-bold lg:flex"><a href="#sobre" className="hover:text-[#e0fb13]">Sobre</a><a href="#servicos" className="hover:text-[#e0fb13]">Serviços</a><a href="#diferenciais" className="hover:text-[#e0fb13]">Diferenciais</a><a href="#prova-social" className="hover:text-[#e0fb13]">Confiança</a></nav>
+      <a href={wa} target="_blank" rel="noreferrer" className="hidden rounded-full bg-[#e0fb13] px-5 py-2.5 text-sm font-black text-slate-950 sm:inline-flex">Quero Tirar Dúvidas</a>
+    </div></header>
+    <section id="inicio" className="relative flex min-h-[760px] items-center overflow-hidden bg-slate-950 pt-24">
+      <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=2000&q=85" alt="Foto profissional mostrando atendimento veterinário em ação" className="absolute inset-0 h-full w-full object-cover opacity-40" loading="eager" />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/30" />
+      <div id="conteudo" className="relative mx-auto w-full max-w-7xl px-5 py-24 lg:px-8"><div className="max-w-4xl">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#e0fb13]/40 bg-[#e0fb13]/10 px-4 py-2 text-sm font-bold text-[#e0fb13]"><PawPrint size={16} /> Cuidado animal com responsabilidade</span>
+        <h1 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">Entregar resultados excepcionais que <span className="text-[#e0fb13]">superam expectativas</span> e geram valor real.</h1>
+        <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">Atendimento veterinário e soluções para pets com qualidade técnica, orientação clara e relacionamento duradouro. Para tutores que valorizam confiança e segurança.</p>
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row"><a href={wa} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#e0fb13] px-7 py-4 font-black text-slate-950 hover:bg-white">Quero Falar com Especialista <ArrowRight size={19} /></a><a href="#servicos" className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/10 px-7 py-4 font-bold text-white">Conhecer nossos serviços</a></div>
+        <div className="mt-10 flex flex-wrap gap-6 text-sm font-bold text-slate-300"><span className="flex items-center gap-2"><ShieldCheck size={17} className="text-[#e0fb13]" />Qualidade técnica</span><span className="flex items-center gap-2"><HeartPulse size={17} className="text-[#e0fb13]" />Bem-estar animal</span><span className="flex items-center gap-2"><MessageCircle size={17} className="text-[#e0fb13]" />Atendimento próximo</span></div>
+      </div></div>
+    </section>
+    <section id="sobre" className="scroll-mt-24 py-20 sm:py-28"><div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:items-center lg:px-8">
+      <div><p className="font-black uppercase tracking-[.2em] text-[#138c03]">Sobre nós</p><h2 className="mt-3 text-3xl font-black sm:text-5xl">Cuidado profissional começa com confiança.</h2><p className="mt-6 text-lg leading-8 text-slate-600">A Veterinária e Pet Shop Brasil busca oferecer aos tutores uma experiência segura e completa para o cuidado de seus animais, reunindo atendimento especializado, produtos e serviços em um relacionamento próximo.</p><p className="mt-4 text-lg leading-8 text-slate-600">Nossa filosofia é simples: qualidade e relacionamento duradouro são fundamentais para o sucesso. Por isso, buscamos orientar cada tutor com clareza e preservar a qualidade técnica e a ética profissional.</p><div className="mt-8 grid gap-4 sm:grid-cols-2"><div className="rounded-2xl bg-slate-50 p-5"><ShieldCheck className="text-[#138c03]" /><b className="mt-3 block">Qualidade sem atalhos</b><p className="mt-1 text-sm text-slate-600">Compromisso técnico e ético em primeiro lugar.</p></div><div className="rounded-2xl bg-slate-50 p-5"><HeartPulse className="text-[#138c03]" /><b className="mt-3 block">Bem-estar como prioridade</b><p className="mt-1 text-sm text-slate-600">Cuidado pensado para cada animal e sua rotina.</p></div></div></div>
+      <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=85" alt="Profissional cuidando de um cão durante atendimento" className="h-[520px] w-full rounded-[2rem] object-cover shadow-2xl" loading="lazy" />
+    </div></section>
+    <section id="servicos" className="scroll-mt-24 bg-slate-50 py-20 sm:py-28"><div className="mx-auto max-w-7xl px-5 lg:px-8"><p className="font-black uppercase tracking-[.2em] text-[#138c03]">Serviços e soluções</p><h2 className="mt-3 text-3xl font-black sm:text-5xl">Tudo para facilitar o cuidado do seu pet.</h2><p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">Soluções para quem busca qualidade, confiança e praticidade, com atendimento próximo.</p><div className="mt-12 grid gap-5 md:grid-cols-2">{services.map(([Icon,title,text])=><article key={title} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"><div className="grid h-14 w-14 place-items-center rounded-2xl bg-[#e0fb13]"><Icon size={27} /></div><h3 className="mt-6 text-2xl font-black">{title}</h3><p className="mt-3 min-h-[72px] leading-7 text-slate-600">{text}</p><a href={wa} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#138c03] px-5 py-3 text-sm font-extrabold text-white hover:bg-green-700">Quero Agendar uma Consulta <ArrowRight size={17} /></a></article>)}</div></div></section>
+    <section id="diferenciais" className="scroll-mt-24 bg-slate-950 py-20 text-white sm:py-28"><div className="mx-auto max-w-7xl px-5 lg:px-8"><p className="font-black uppercase tracking-[.2em] text-[#e0fb13]">Diferenciais competitivos</p><h2 className="mt-3 text-3xl font-black sm:text-5xl">Profissionalismo em cada detalhe.</h2><p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">Nosso compromisso é transformar a preocupação do tutor em clareza, segurança e uma experiência de cuidado confiável.</p><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{differentials.map(([Icon,title,text])=><article key={title} className="rounded-3xl border border-white/10 bg-white/[.05] p-6 hover:border-[#e0fb13]/40"><Icon className="text-[#e0fb13]" /><h3 className="mt-5 font-black">{title}</h3><p className="mt-2 leading-7 text-slate-300">{text}</p></article>)}</div></div></section>
+    <section id="prova-social" className="scroll-mt-24 py-20 sm:py-28"><div className="mx-auto max-w-5xl px-5 text-center lg:px-8"><p className="font-black uppercase tracking-[.2em] text-[#138c03]">Depoimentos e prova social</p><h2 className="mt-3 text-3xl font-black sm:text-5xl">Uma relação construída com transparência.</h2><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Como não foram fornecidos depoimentos reais, esta área apresenta compromissos concretos da marca sem inventar nomes, cargos ou resultados.</p><div className="mt-12 rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl sm:p-14"><div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#e0fb13] text-slate-950"><PawPrint /></div><h3 className="mt-7 text-2xl font-black sm:text-3xl">{proof[slide][0]}</h3><p className="mx-auto mt-4 max-w-2xl text-lg leading-7 text-slate-300">{proof[slide][1]}</p><div className="mt-8 flex items-center justify-center gap-3"><button onClick={()=>setSlide((slide+proof.length-1)%proof.length)} aria-label="Anterior" className="grid h-11 w-11 place-items-center rounded-full border border-white/20"><ChevronLeft /></button>{proof.map((_,i)=><button key={i} onClick={()=>setSlide(i)} aria-label={"Slide "+(i+1)} className={"h-2.5 rounded-full "+(i===slide?"w-8 bg-[#e0fb13]":"w-2.5 bg-white/30")} />)}<button onClick={()=>setSlide((slide+1)%proof.length)} aria-label="Próximo" className="grid h-11 w-11 place-items-center rounded-full border border-white/20"><ChevronRight /></button></div></div></div></section>
+    <section id="contato" className="scroll-mt-24 bg-[#e0fb13] py-20 sm:py-24"><div className="mx-auto max-w-5xl px-5 text-center lg:px-8"><p className="font-black uppercase tracking-[.2em] text-[#138c03]">Fale conosco</p><h2 className="mt-3 text-3xl font-black sm:text-5xl">Entregar resultados excepcionais que superam expectativas e geram valor real.</h2><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-800">Tire suas dúvidas, conheça nossos serviços e encontre a melhor forma de cuidar do seu pet.</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><a href={wa} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-7 py-4 font-black text-white hover:bg-[#138c03]">Quero Falar com Especialista <MessageCircle /></a><a href={wa} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-950 px-7 py-4 font-black text-slate-950 hover:bg-white">Quero Agendar uma Consulta <CalendarCheck /></a></div><div className="mt-10 grid gap-4 text-left sm:grid-cols-3"><div className="rounded-2xl bg-white/60 p-5"><MapPin className="text-[#138c03]" /><b className="mt-3 block">Onde estamos</b><p className="mt-1 text-sm text-slate-700">Rua Àguas de Lindoia, 567, Osasco - SP</p></div><div className="rounded-2xl bg-white/60 p-5"><Clock3 className="text-[#138c03]" /><b className="mt-3 block">Horário</b><p className="mt-1 text-sm text-slate-700">Seg. 8h às 18h · Sáb. 8h às 17h</p></div><div className="rounded-2xl bg-white/60 p-5"><MessageCircle className="text-[#138c03]" /><b className="mt-3 block">WhatsApp</b><p className="mt-1 text-sm text-slate-700">(11) 36867-893</p></div></div></div></section>
+    <footer className="bg-slate-950 py-12 text-white"><div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 lg:flex-row lg:items-end lg:justify-between lg:px-8"><div><div className="flex items-center gap-2"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#e0fb13] text-slate-950"><PawPrint /></span><b>Veterinária e Pet Shop Brasil</b></div><p className="mt-4 max-w-md text-sm leading-6 text-slate-400">Atendimento veterinário, pet shop e soluções para o bem-estar animal com qualidade técnica e relacionamento duradouro.</p></div><div className="flex flex-wrap gap-5 text-sm font-bold text-slate-300"><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#diferenciais">Diferenciais</a><a href="https://www.instagram.com/veterinariabrasiloficial/" target="_blank" rel="noreferrer">Instagram</a><a href="mailto:veterinaria@petshopBrasil">E-mail</a></div></div></footer>
+    <a href={wa} target="_blank" rel="noreferrer" aria-label="Falar pelo WhatsApp" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#138c03] text-white shadow-2xl hover:scale-105"><MessageCircle size={26} /></a>
+  </main>;
 }
